@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能少年 - 般渡教育</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#FFB800',
+                        dark: '#333333',
+                        light: '#F5F7FA',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+            .btn-primary {
+                @apply bg-primary text-white px-6 py-2 rounded-md transition-all duration-300 hover:bg-primary/90 hover:shadow-lg transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary/50;
+            }
+            .carousel-indicator.active {
+                @apply bg-primary;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-dark font-sans antialiased">
+    <!-- 导航栏 -->
+    <header class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="#" class="text-primary font-bold text-xl md:text-2xl">般渡教育</a>
+                </div>
+
+                <!-- 桌面端菜单 -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-dark hover:text-primary transition-colors duration-200 font-medium">关于智能少年</a>
+                    <a href="#students" class="text-dark hover:text-primary transition-colors duration-200 font-medium">学员展示</a>
+                    <a href="#contact" class="text-dark hover:text-primary transition-colors duration-200 font-medium">联系我们</a>
+                </nav>
+
+                <!-- 移动端菜单按钮 -->
+                <div class="md:hidden">
+                    <button type="button" id="mobile-menu-button" class="text-dark hover:text-primary focus:outline-none">
+                        <i class="fa fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+            <div class="px-4 pt-2 pb-4 space-y-3">
+                <a href="#about" class="block text-dark hover:text-primary transition-colors duration-200 py-2 font-medium">关于智能少年</a>
+                <a href="#students" class="block text-dark hover:text-primary transition-colors duration-200 py-2 font-medium">学员展示</a>
+                <a href="#contact" class="block text-dark hover:text-primary transition-colors duration-200 py-2 font-medium">联系我们</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero区域 -->
+    <section class="pt-16 md:pt-20 bg-gradient-to-br from-primary/5 to-primary/10 min-h-[80vh] flex items-center">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 md:pr-12">
+                    <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-dark">
+                        以自学为基础，<br>以生产为导向
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-lg">
+                        探索智能少年如何用自学实现创作，展示般渡教育学员的成长与成果
+                    </p>
+                    <div class="pt-4">
+                        <a href="#students" class="btn-primary inline-flex items-center">
+                            查看学员展示
+                            <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden transform rotate-2 transition-transform duration-500 hover:rotate-0 relative">
+                        <!-- 轮播容器 -->
+                        <div id="carousel" class="relative overflow-hidden w-full h-[400px]">
+                            <!-- 轮播图片 -->
+                            <div id="carousel-inner" class="flex transition-transform duration-500 ease-in-out h-full">
+                                <div class="carousel-item min-w-full h-full">
+                                    <img src="images/teenagers-learning1.jpg.jpg" alt="智能少年学习场景1" class="w-full h-full object-cover">
+                                </div>
+                                <div class="carousel-item min-w-full h-full">
+                                    <img src="images/teenagers-learning2.jpg.jpg" alt="智能少年学习场景2" class="w-full h-full object-cover">
+                                </div>
+                                <div class="carousel-item min-w-full h-full">
+                                    <img src="images/teenagers-learning3.jpg.jpg" alt="智能少年学习场景3" class="w-full h-full object-cover">
+                                </div>
+                                <div class="carousel-item min-w-full h-full">
+                                    <img src="images/teenagers-learning4.jpg.jpg" alt="智能少年学习场景4" class="w-full h-full object-cover">
+                                </div>
+                                <div class="carousel-item min-w-full h-full">
+                                    <img src="images/teenagers-learning5.jpg.jpg" alt="智能少年学习场景5" class="w-full h-full object-cover">
+                                </div>
+                                <div class="carousel-item min-w-full h-full">
+                                    <img src="images/teenagers-learning6.jpg.jpg" alt="智能少年学习场景6" class="w-full h-full object-cover">
+                                </div>
+                                <div class="carousel-item min-w-full h-full">
+                                    <img src="images/teenagers-learning7.jpg.jpg" alt="智能少年学习场景7" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+
+                            <!-- 轮播控制按钮 -->
+                            <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/50 hover:bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 focus:outline-none">
+                                <i class="fa fa-angle-left text-xl"></i>
+                            </button>
+                            <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/50 hover:bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 focus:outline-none">
+                                <i class="fa fa-angle-right text-xl"></i>
+                            </button>
+
+                            <!-- 轮播指示器 -->
+                            <div id="carousel-indicators" class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                                <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300 carousel-indicator active" data-index="0"></button>
+                                <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300 carousel-indicator" data-index="1"></button>
+                                <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300 carousel-indicator" data-index="2"></button>
+                                <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300 carousel-indicator" data-index="3"></button>
+                                <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300 carousel-indicator" data-index="4"></button>
+                                <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300 carousel-indicator" data-index="5"></button>
+                                <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300 carousel-indicator" data-index="6"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于智能少年 -->
+    <section id="about" class="py-20 bg-light">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center space-y-6">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark">关于智能少年项目</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto"></div>
+                <p class="text-gray-700 text-lg">
+                    般渡教育"智能少年"项目致力于培养青少年的自主学习能力和创新思维，通过实践导向的学习方式，让学生在真实项目中掌握技能，实现从学习者到创造者的转变。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学员展示 -->
+    <section id="students" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">学员展示</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    以下是部分优秀学员的展示，他们通过自学和实践，在各自领域取得了令人瞩目的成果
+                </p>
+            </div>
+
+            <!-- 学员卡片网格 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 学员1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="bg-light p-6 flex justify-center">
+                        <img src="images/tangmingqian.jpg" alt="唐鸣谦" class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-md">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-dark mb-2">唐鸣谦</h3>
+                        <p class="text-gray-600 mb-4">我喜欢游戏，并且通过AI制作了自己的游戏和个人网页。现在正在自学创作中。通过般渡教育的项目实践，已经独立完成了2个游戏和3个网页作品。</p>
+                        <a href="https://kangkangzai007.github.io/tang/" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block">
+                            访问我的网站
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 学员2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="bg-light p-6 flex justify-center">
+                        <img src="https://via.placeholder.com/150" alt="王芳" class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-md">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-dark mb-2">王芳</h3>
+                        <p class="text-gray-600 mb-4">我对AI特别感兴趣，正在做一个语音助手。通过自学掌握了Python和机器学习基础知识。</p>
+                        <a href="https://wangfang.example.com" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block">
+                            访问我的网站
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 学员3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="bg-light p-6 flex justify-center">
+                        <img src="https://via.placeholder.com/150" alt="张强" class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-md">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-dark mb-2">张强</h3>
+                        <p class="text-gray-600 mb-4">喜欢设计网站，我想成为一名前端工程师。专注于用户体验和交互设计，追求极致的界面美感。</p>
+                        <a href="https://zhangqiang.example.com" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block">
+                            访问我的网站
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-20 bg-primary/5">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-8 md:p-12 bg-primary flex flex-col justify-center">
+                        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">联系我们</h2>
+                        <p class="text-white/90 mb-8">
+                            对智能少年项目感兴趣？填写表单或通过以下方式联系我们，我们将尽快回复您。
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center text-white">
+                                <i class="fa fa-envelope-o mr-3 text-xl"></i>
+                                <span>contact@bandoo-edu.com</span>
+                            </div>
+                            <div class="flex items-center text-white">
+                                <i class="fa fa-phone mr-3 text-xl"></i>
+                                <span>13068018494</span>
+                            </div>
+                            <div class="flex items-center text-white">
+                                <i class="fa fa-map-marker mr-3 text-xl"></i>
+                                <span>北京市海淀区中关村创新中心A座15层</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 md:p-12">
+                        <form class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">姓名</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" placeholder="您的姓名">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" placeholder="您的邮箱">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">留言</label>
+                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" placeholder="请输入您的留言..."></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn-primary w-full">
+                                    发送留言
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-white font-bold text-xl">般渡教育</a>
+                    <p class="text-gray-400 mt-2">智能少年项目官方网站</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <i class="fa fa-weibo text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <i class="fa fa-wechat text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>般渡教育 © 2025 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // 关闭移动菜单（如果打开）
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+            }
+        });
+
+        // 轮播功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselInner = document.getElementById('carousel-inner');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            const items = document.querySelectorAll('.carousel-item');
+            const totalItems = items.length;
+            let currentIndex = 0;
+            let interval;
+
+            // 初始化轮播
+            function initCarousel() {
+                // 启动自动轮播
+                startAutoPlay();
+
+                // 绑定事件
+                prevBtn.addEventListener('click', () => moveToPrev());
+                nextBtn.addEventListener('click', () => moveToNext());
+                indicators.forEach(indicator => {
+                    indicator.addEventListener('click', () => moveToIndex(parseInt(indicator.dataset.index)));
+                });
+
+                // 鼠标悬停暂停轮播
+                document.getElementById('carousel').addEventListener('mouseenter', pauseAutoPlay);
+                document.getElementById('carousel').addEventListener('mouseleave', startAutoPlay);
+            }
+
+            // 移动到上一张
+            function moveToPrev() {
+                currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+                updateCarousel();
+            }
+
+            // 移动到下一张
+            function moveToNext() {
+                currentIndex = (currentIndex + 1) % totalItems;
+                updateCarousel();
+            }
+
+            // 移动到指定索引
+            function moveToIndex(index) {
+                currentIndex = index;
+                updateCarousel();
+            }
+
+            // 更新轮播状态
+            function updateCarousel() {
+                // 移动图片
+                carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+                // 更新指示器
+                indicators.forEach((indicator, index) => {
+                    if (index === currentIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+
+            // 启动自动轮播
+            function startAutoPlay() {
+                interval = setInterval(moveToNext, 5000); // 每5秒切换一次
+            }
+
+            // 暂停自动轮播
+            function pauseAutoPlay() {
+                clearInterval(interval);
+            }
+
+            // 初始化轮播
+            initCarousel();
+        });
+    </script>
+</body>
+</html>
